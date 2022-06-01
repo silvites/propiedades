@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>    
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">  
+
+    <title>SANTA FE PROPIEDADES SRL</title>
+</head>
+<body>
+    <div class="container" align="center">
+        <section class="tm-section-head" id="top">
+            <header id="header">
+                <h1><small>SANTA FE PROPIEDADES SRL</small></h1>
+                <p><h3><small>San Martin 3042 - Santa Fe</small></h3></p>
+                <p><h3><small>Telefono: 4534570-4534571</small></h3></p>                    
+            </header>
+        </section>
+        <img src="img/puente04.jpg" class="img-rounded" alt="imagen" width="950" height="500" align="center"> 
+        
+        <br></br>
+
+<!--    Primera fila  -->
+        <div class="row" align="center">
+            <div class="col-xs-4">                    
+                <div class="form-group">
+                    <label for="operacion">Operacion</label>                        
+                    <select name="operacion" id="operacion" class="form-control input sm" >
+                        <option value='Alquiler'>Alquiler</option>
+                        <option value='Venta'>Venta</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-xs-4">
+                <div class="form-group" >
+                    <label for="tipoProp">Tipo de Propiedad</label>                          
+                    <select name="tipoProp" id="tipoProp" class="form-control input sm" >
+                        <option value='Casa' selected>Casa</option>
+                        <option value='Departamento'>Departamento</option>
+                        <option value='CasaQuinta'>Casa Quinta</option>   
+                    </select>
+                </div>
+            </div>
+            <div class="col-xs-4">
+                <div class="form-group" >
+                    <label for="zona">Zona</label>                       
+                    <select  name="zona" id="zona"  class="form-control input sm">
+                        <option value='Centro'>Centro</option>
+                        <option value='Guadalupe'>Guadalupe</option>
+                        <option value='Candioti'>Candioti</option>
+                        <option value='ZonaSur'>Zona Sur</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+<!--    Segunda fila  -->
+        <div class="row" align="center">
+            <div class="col-xs-4">
+                <div class="form-group">
+                    <label for="dormitorios">Dormitorios</label>                        
+                    <select name="dormitorios" id="dormitorios" class="form-control input sm" >
+                        <option value='1'>1 dormitorio</option>
+                        <option value='2'>2 dormitorios</option>
+                        <option value='3'>3 dormitorios</option>
+                        <option value='4'>Mas de 3 dormitorios</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-xs-4">
+                <div class="form-group">
+                    <label for="cochera">Cochera</label>
+                    <select name="cochera" id="cochera" class="form-control input sm" >
+                        <option value='conCochera'>con cochera</option>
+                        <option value='sinCochera'>sin cochera</option>
+                    </select>
+                </div>
+            </div>                
+            <div class="col-xs-4">
+                <div class="form-group">
+                    <div class = "text-center" >
+                        <label for="precioMaximo">Precio Maximo</label>
+                        <input type="number" id="precioMaximo" value ="9999999" class="form-control">
+                    </div>
+                </div>
+            </div> 
+        </div>
+        <br></br>        
+<!--    Tercera fila - Botones   -->
+        <div class="row" align="center">
+            <div class="col-xs-4">
+                <div class = "text-center">                    
+                <button id="buscar" class="btn  tm-btn-submit float-right btn-big" >Buscar Propiedades</button>               
+                </div>         
+            </div>              
+
+            <div class="col-xs-4">
+                <div class = "text-center"> 
+                <button id="ordenAsc" class="btn  tm-btn-submit float-right btn-big">Orden Ascendente</button>               
+                </div>    
+            </div>
+
+            <div class="col-xs-4">
+                <div class = "text-center">
+                <button id="ordenDes" class="btn  tm-btn-submit float-right btn-big">Orden Descendente</button>               
+                </div>
+            </div>   
+        </div> 
+        <br></br>        
+<!--    Mostrar Propiedades  -->       
+                <div id="todas" align="left">
+
+                </div>            
+            </div>
+        </section>             
+    </div>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/luxon@2.3.0/build/global/luxon.min.js"></script>
+    <script src="buscaPropiedad.js"></script>       
+</body>
+</html>
