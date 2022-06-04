@@ -8,7 +8,6 @@ function ordenaPropiedades(seleccion, orden){
 }
 
 function muestraPropiedades(propiedades){
-    console.log(propiedades);
     let todas = document.getElementById("todas");
     todas.innerHTML="";
     propiedades.forEach( (propiedad) => {
@@ -51,14 +50,22 @@ function muestraPropiedades(propiedades){
 function buscarPropiedades(propiedades, ordenamiento){
     let sel = document.getElementById("operacion");
     let operacion = sel.options[sel.selectedIndex].value;
+
     sel = document.getElementById("tipoProp");
     let tipoProp = sel.options[sel.selectedIndex].value;
-    sel = document.getElementById("zona");
+    let tipoPropTodas = tipoProp == "Todas" ? true : false;
+
+    sel = document.getElementById("zona"); 
     let zona = sel.options[sel.selectedIndex].value;
+    let zonaTodas = zona == "Todas" ? true : false;
+
     sel = document.getElementById("dormitorios");
     let dormitorios = sel.options[sel.selectedIndex].value;
+    let dormitoriosTodos = dormitorios == "0" ? true : false;
+
     sel = document.getElementById("cochera");
     let cochera = sel.options[sel.selectedIndex].value;
+    let cocheraTodas = cochera == "Todas" ? true : false;
     sel = document.getElementById("precioMaximo");
     let precioMaximo = sel.value;
     let orden = ordenamiento;
@@ -76,15 +83,15 @@ function buscarPropiedades(propiedades, ordenamiento){
     }
 
     const seleccion = propiedades.filter((elem)=>(elem.operacion == operacion) &&
-                                            (elem.tipoProp == tipoProp) &&
-                                            (elem.zona == zona) &&
-                                            (parseInt(elem.dormitorios) >= minDormitorios) &&
-                                            (parseInt(elem.dormitorios) <= maxDormitorios) &&        
-                                            (elem.cochera == cochera)  &&
+                                            ((elem.tipoProp == tipoProp) || tipoPropTodas ) &&
+                                            ((elem.zona == zona) || zonaTodas) &&
+                                            ((parseInt(elem.dormitorios) >= minDormitorios) &&
+                                            (parseInt(elem.dormitorios) <= maxDormitorios) || 
+                                            dormitoriosTodos) &&        
+                                            ((elem.cochera == cochera) || cocheraTodas) &&
                                             (parseInt(elem.precio) <= parseInt(precioMaximo))   
                                             );
     console.log("Propiedades encontradas ordenadas por precio");
-    console.log(seleccion);
     if (seleccion.length > 0){
         ordenaPropiedades(seleccion, orden);
         muestraPropiedades(seleccion);
@@ -94,8 +101,9 @@ function buscarPropiedades(propiedades, ordenamiento){
             text: 'Cambie algún valor y vuelva a intentar',
             icon: 'info',
             confirmButtonText: 'Entendido'
-        }) 
-        muestraPropiedades(propiedades);
+        }); 
+        const propiedadesPorOperacion = propiedades.filter((elem)=>(elem.operacion == operacion));
+        muestraPropiedades(propiedadesPorOperacion);
     }
     guardaPreferencias(operacion, tipoProp, zona, dormitorios, cochera, precioMaximo, orden);
 }
@@ -152,10 +160,10 @@ async function cargaPropiedades(propiedades){
         let data = await response.json();
 
         data.forEach((propiedad) => {
-console.log(propiedad.cochera);
             propiedad.fechaPublicacion = DateTime.fromISO(propiedad.fechaPublicacion);
             propiedades.push(propiedad);
         });
+
 //// busco en localStorage si hay preferencias guardadas
 ////    si hay preferencias --> va a filtrar y mostrar
 ////    si no hay preferenc.--> va a mostrar todas las disponibles
